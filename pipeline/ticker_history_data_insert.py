@@ -10,6 +10,7 @@ from dotenv import dotenv_values
 from investing.core.data import Interval, Period, StockData
 from investing.core.db import latest_data_query, prepare_ticker_history_table
 from investing.core.exception import YahooAPIError
+from investing.core.models import DBTableName
 from investing.core.utils import create_batches_list
 
 logger = logging.getLogger("factor-investing")
@@ -70,9 +71,9 @@ for current_batch in alive_it(
             logger.warning(f"{e}, so skipping it.")
 
     # inserting data to the `ticker_history` table
-    # with dbapi.connect(conn_string) as conn:
-    #     data_inset_df.write_database(
-    #         DBTableName.ticker_history.value, conn, if_table_exists="append"
-    #     )
+    with dbapi.connect(conn_string) as conn:
+        data_inset_df.write_database(
+            DBTableName.ticker_history.value, conn, if_table_exists="append"
+        )
 
-    #     logger.info(f"successfully inserted {len(data_inset_df)} rows")
+        logger.info(f"successfully inserted {len(data_inset_df)} rows")
