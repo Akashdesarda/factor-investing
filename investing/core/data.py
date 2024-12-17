@@ -81,8 +81,9 @@ class StockData:
                 end=end,
                 actions=False,
                 raise_errors=True,
-                progress=False,
-                # group_by="ticker", # NOTE - not present in single `Tickers` object
+                # NOTE - not present in single `Tickers` object
+                # progress=False,
+                # group_by="ticker",
             )
             self._ticker_data[self._ticker_without_exchange] = pl.from_pandas(
                 result, include_index=True

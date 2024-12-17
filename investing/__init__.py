@@ -13,7 +13,7 @@ console_handler = RichHandler(
     locals_max_string=150,
 )
 log_format = logging.Formatter(
-    "%(asctime)s\t%(levelname)s\t%(message)s", datefmt="%d-%b-%y %H:%M:%S"
+    "%(asctime)s\t%(message)s", datefmt="%d-%b-%y %H:%M:%S"
 )
 console_handler.setFormatter(log_format)
 logger.addHandler(console_handler)
